@@ -9,7 +9,7 @@
 
 Xi'an Jiaotong University
 
-**AAAI 2026** &nbsp;|&nbsp; [Project Website](https://efficientflow.github.io) &nbsp;|&nbsp; [Paper](#)
+**AAAI 2026** &nbsp;|&nbsp; [Project Website](https://efficientflow.github.io) &nbsp;|&nbsp; [Paper](https://arxiv.org/abs/2512.02020)
 
 </div>
 
