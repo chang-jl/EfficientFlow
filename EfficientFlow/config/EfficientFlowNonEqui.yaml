@@ -18,7 +18,7 @@ dataset_obs_steps: ${n_obs_steps}
 past_action_visible: False
 obs_as_global_cond: True
 dataset: EfficientFlow.dataset.robomimic_replay_image_dataset.RobomimicReplayImageDataset
-dataset_path: /mnt/data/cjl/data/data/robomimic/datasets/${task_name}/${task_name}_abs.hdf5
+dataset_path: data/robomimic/datasets/${task_name}/${task_name}_abs.hdf5
 
 policy:
   _target_: EfficientFlow.policy.EfficientFlowNonEqui.EfficientFlowNonEquiPolicy
