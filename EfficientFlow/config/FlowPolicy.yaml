@@ -2,7 +2,7 @@ defaults:
   - _self_
   - task: mimicgen_pc_abs
 
-name: train_dp3flowpolicy
+name: flowpolicy
 _target_: EfficientFlow.workspace.train_dp3_workspace.TrainDP3Workspace
 
 shape_meta: ${task.shape_meta}
@@ -101,7 +101,7 @@ optimizer:
   weight_decay: 1.0e-6
 
 training:
-  device: "cuda:7"
+  device: "cuda:0"
   seed: 42
   debug: False
   resume: True

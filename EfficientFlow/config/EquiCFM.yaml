@@ -2,7 +2,7 @@ defaults:
   - _self_
   - task: mimicgen_abs
 
-name: equi_diff
+name: EquiCFM
 _target_: EfficientFlow.workspace.train_equi_workspace.TrainEquiWorkspace
 
 shape_meta: ${task.shape_meta}
@@ -92,7 +92,7 @@ optimizer:
 
 
 training:
-  device: "cuda:1"
+  device: "cuda:0"
   seed: 42
   debug: False
   resume: True

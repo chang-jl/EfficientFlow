@@ -2,14 +2,12 @@ defaults:
   - _self_
   - task: mimicgen_abs
 
-name: equi_diff
+name: EfficientFlow
 _target_: EfficientFlow.workspace.train_equi_workspace.TrainEquiWorkspace
 
 shape_meta: ${task.shape_meta}
 exp_name: "default"
 
-# output_dir: 'data/outputs'
-# tag: 'latest'
 task_name: stack_d1
 n_demo: 200
 horizon: 16
@@ -19,7 +17,7 @@ n_latency_steps: 0
 dataset_obs_steps: ${n_obs_steps}
 past_action_visible: False
 dataset: EfficientFlow.dataset.robomimic_replay_image_sym_dataset.RobomimicReplayImageSymDataset
-dataset_path: data/robomimic/datasets/${task_name}/${task_name}_abs.hdf5
+dataset_path: /mnt/data/cjl/data/data/robomimic/datasets/${task_name}/${task_name}_abs.hdf5
 
 policy:
   _target_: EfficientFlow.policy.EfficientFlow.EfficientFlowPolicy
@@ -29,8 +27,6 @@ policy:
   use_mid_condition: true
   use_up_condition: true
   
-
-
   diffusion_step_embed_dim: 128
   down_dims:
   - 512
@@ -59,7 +55,6 @@ policy:
   action_use_min: False
   num_of_trajectories: 5
   num_inference_step: 1
-
 
 ema:
   _target_: EfficientFlow.model.diffusion.ema_model.EMAModel
@@ -93,7 +88,7 @@ optimizer:
 
 
 training:
-  device: "cuda:3"
+  device: "cuda:0"
   seed: 42
   debug: False
   resume: True
@@ -138,14 +133,14 @@ checkpoint:
   save_last_snapshot: False
 
 multi_run:
-  run_dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_enc_n_hidden_${policy.enc_n_hidden}_${task_name}
+  run_dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_${task_name}
   wandb_name_base: ${now:%Y.%m.%d-%H.%M.%S}_${name}_${task_name}
 
 hydra:
   job:
     override_dirname: ${name}
   run:
-    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_enc_n_hidden_${policy.enc_n_hidden}_${task_name}
+    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_${task_name}
   sweep:
-    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_enc_n_hidden_${policy.enc_n_hidden}_${task_name}
+    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_${task_name}
     subdir: ${hydra.job.num}

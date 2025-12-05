@@ -2,7 +2,7 @@ defaults:
   - _self_
   - task: mimicgen_abs
 
-name: diff_c
+name: EfficientFlowNonEqui
 _target_: EfficientFlow.workspace.train_diffusion_unet_hybrid_workspace.TrainDiffusionUnetHybridWorkspace
 
 shape_meta: ${task.shape_meta}

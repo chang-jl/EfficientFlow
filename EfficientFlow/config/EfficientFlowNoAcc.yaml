@@ -2,7 +2,7 @@ defaults:
   - _self_
   - task: mimicgen_abs
 
-name: equi_diff
+name: EfficientFlowNoAcc
 _target_: EfficientFlow.workspace.train_equi_workspace.TrainEquiWorkspace
 
 shape_meta: ${task.shape_meta}
@@ -96,7 +96,7 @@ optimizer:
 
 
 training:
-  device: "cuda:3"
+  device: "cuda:0"
   seed: 42
   debug: False
   resume: True
@@ -141,14 +141,14 @@ checkpoint:
   save_last_snapshot: False
 
 multi_run:
-  run_dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_enc_n_hidden_${policy.enc_n_hidden}_${task_name}
+  run_dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_${task_name}
   wandb_name_base: ${now:%Y.%m.%d-%H.%M.%S}_${name}_${task_name}
 
 hydra:
   job:
     override_dirname: ${name}
   run:
-    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_enc_n_hidden_${policy.enc_n_hidden}_${task_name}
+    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_${task_name}
   sweep:
-    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_enc_n_hidden_${policy.enc_n_hidden}_${task_name}
+    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_demo${n_demo}_${task_name}
     subdir: ${hydra.job.num}
